@@ -1,12 +1,9 @@
-const express = require('express');
-const app = express();
-app.use(express.json());
+require('dotenv').config();
 
-app.get('/compromissos', (req, res) => {
- res.json([{ id_compromisso: 1, titulo: 'titulo' }]);
-});
+const app = require('./src/app');
 
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
+
 app.listen(PORT, () => {
- console.log(`Servidor rodando na porta ${PORT}`);
+  console.log(`Servidor rodando na porta ${PORT}`);
 });
