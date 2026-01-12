@@ -1,6 +1,3 @@
--- create_tables.sql
--- Corrected and completed CREATE TABLE statements for Easy Agenda
-
 CREATE TABLE IF NOT EXISTS `usuarios` (
   `id_usuario` int AUTO_INCREMENT NOT NULL,
   `nome_exibicao` varchar(200) NOT NULL,
