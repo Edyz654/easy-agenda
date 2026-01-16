@@ -1,0 +1,72 @@
+@baseURL = http://localhost:3000
+@id_usuario = 2
+
+### Listar Usuários
+GET {{baseURL}}/users
+Accept: application/json
+
+### Criar Usuário
+POST {{baseURL}}/users
+Content-Type: application/json
+
+{
+    "nome_exibicao": "Teste",
+    "email": "teste@example.com",
+    "telefone": "11999999999",
+    "cpf": "12345678901",
+    "genero": "M",
+    "login": "teste.user",
+    "senha": "123456",
+    "fuso_horario": "UTC -3",
+    "criado_em": "2024-06-01T12:00:00Z"
+}
+
+### Criar Usuário com Email Inválido (erro esperado)
+POST {{baseURL}}/users
+Content-Type: application/json
+
+{
+    "nome_exibicao": "Teste2",
+    "email": "invalid-email",
+    "telefone": "11999999999",
+    "cpf": "12345678901",
+    "genero": "M",
+    "login": "teste.user",
+    "senha": "123456",
+    "fuso_horario": "UTC -3",
+    "criado_em": "2024-06-01T12:00:00Z"
+}
+
+### Criar Usuário com Email Duplicado (erro esperado)
+POST {{baseURL}}/users
+Content-Type: application/json  
+
+{
+    "nome_exibicao": "Teste3",
+    "email": "teste@example.com",  
+    "telefone": "11999999999",
+    "cpf": "12345678901",
+    "genero": "M",
+    "login": "teste.user2",
+    "senha": "123456",
+    "fuso_horario": "UTC -3",
+    "criado_em": "2024-06-01T12:00:00Z"
+}
+
+### Atualizar Usuário existente
+PUT {{baseURL}}/users/{3}
+Content-Type: application/json
+
+{
+    "nome_exibicao": "Teste Atualizado",
+    "email": "teste2@teste.com"
+}
+
+
+### Deletar Usuário existente
+DELETE {{baseURL}}/users/{@id_usuario}
+
+
+### Deletar Usuário inexistente (erro esperado)
+DELETE {{baseURL}}/users/9999
+Accept: application/json

@@ -57,5 +57,7 @@ class UserService {
     }
 }
 
+
+
 module.exports = UserService;
 // Exporta a classe para ser utilizada pelos controllers
