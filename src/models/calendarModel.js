@@ -28,3 +28,13 @@ class CalendarModel {
         const [result] = await db.query('UPDATE calendarios SET nome_exibicao = ?, cor = ?, criado_em = ? WHERE id_calendario = ?', [nome_exibicao, cor, criado_em, id]);
         return result.affectedRows; // Retorna o número de linhas afetadas
     }
+
+    // Deleta um calendário pelo ID
+    static async delete(id_calendario) {
+        const [result] = await db.query('DELETE FROM calendarios WHERE id_calendario = ?', [id_calendario]);
+        return result.affectedRows; // Retorna o número de linhas afetadas
+    }
+}
+
+module.exports = CalendarModel;
+// Exporta a classe CalendarModel para ser usada nos services   
