@@ -15,6 +15,13 @@ class UserModel {
         return rows[0];
     }
 
+    // Busca um usuário pelo ID
+    static async findById(id_usuario) {
+        const [rows] = await db.query('SELECT * FROM usuarios WHERE id_usuario = ?',
+            [id_usuario]);
+        return rows[0];
+    }
+
     // Cria um novo usuário
     static async create(user) {
         const { nome_exibicao, email, telefone, cpf, genero, login, senha, fuso_horario, criado_em } = user;
@@ -30,8 +37,8 @@ class UserModel {
     }
 
     // Deleta um usuário pelo ID
-    static async delete(id) {
-        const [result] = await db.query('DELETE FROM usuarios WHERE id = ?', [id]);
+    static async delete(id_usuario) {
+        const [result] = await db.query('DELETE FROM usuarios WHERE id_usuario = ?', [id_usuario]);
         return result.affectedRows; // Retorna o número de linhas afetadas
     }
 }
