@@ -1,21 +1,56 @@
-const express = require('express');
+const CalendarService = require('../services/calendarService');
+// Importa o serviço que contém a lógica de negócio para manipular calendários
 
-const CalendarController = require('../controllers/calendarController');
-// Importa o controller que gerencia as requisições relacionadas ao calendário
+class CalendarController {
+    static async getAll(req, res) {
+        try {
+            const calendars = await CalendarService.getAllCalendars();
+            res.json(calendars);
+        } catch (error) {
+            res.status(500).json({ error: error.message });
+        }
+    }
 
-const router = express.Router();
+    static async create(req, res) {
+        try {
+            const calendar = await CalendarService.createCalendar(req.body);
 
-// Rota para listar todos os calendários
-router.get('/', CalendarController.getAll);
+            res.status(201).json(calendar);
 
-// Rota para criar um novo calendário
-router.post('/', CalendarController.create);
+        } catch (error) {
+            res.status(400).json({ error: error.message });
+        }
+    }
 
-// Rota para atualizar um calendário
-router.put('/:id_calendario', CalendarController.update);
+    static async update(req, res) {
+        try {
+            const updatedRows = await CalendarService.updateCalendar(
+                req.params.id_calendario,
+                req.body
+            );
+            if (updatedRows === 0) {
+                return res.status(404).json({ error: "Calendário não encontrado." });
+            }
+            res.json({ message: "Calendário atualizado com sucesso." });
+        } catch (error) {
+            res.status(400).json({ error: error.message });
+        }
+    }
 
-// Rota para deletar um calendário
-router.delete('/:id_calendario', CalendarController.delete);
+    static async delete(req, res) {
+        try {
+            const deletedRows = await CalendarService.deleteCalendar(
+                req.params.id_calendario //Pega o ID da URL
+            );
+            if (deletedRows === 0) {
+                return res.status(404).json({ error: "Calendário não encontrado." }); // Verifica se o ID é válido
+            }
+            res.json({ message: "Calendário deletado com sucesso." });
+        } catch (error) {
+            res.status(400).json({ error: error.message });
+        }
+    }
+}
 
-module.exports = router;
-// Exporta o roteador para ser usado na aplicação principal
+module.exports = CalendarController;
+// Exporta a classe CalendarController para ser usada nas rotas

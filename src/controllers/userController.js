@@ -15,11 +15,11 @@ class UserController {
     // Método para criar um novo usuário
     static async create(req, res) {
         try {
-            const id_usuario = await UserService.createUser(req.body);
+            const user = await UserService.createUser(req.body);
 
             res.status(201).json({
                 message: 'Usuário criado com sucesso.',
-                id_usuario
+                user: user
             }); // Retorna status 201 (criado)
 
         } catch (error) {
@@ -47,7 +47,7 @@ class UserController {
     // Método para deletar um usuário
     static async delete(req, res) {
         try {
-            const id_usuario = Number(req.params.id_usuario); // Pega o ID da URL
+            const id_usuario = Number(req.params.id_usuario); // Pega o ID da URL e converte para número
 
             if (isNaN(id_usuario)) {
                 return res.status(400).json({ error: 'ID de usuário inválido.' }); // Verifica se o ID é um número válido

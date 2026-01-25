@@ -8,7 +8,7 @@ class CalendarModel {
         return rows;
     }
 
-// Busca um calendário pelo ID
+    // Busca um calendário pelo ID
     static async findById(id_calendario) {
         const [rows] = await db.query('SELECT * FROM calendarios WHERE id = ?',
             [id_calendario]);
@@ -17,15 +17,17 @@ class CalendarModel {
 
     // Cria um novo calendário
     static async create(calendar) {
-        const { nome_exibicao, cor, criado_em } = calendar;
-        const [result] = await db.query('INSERT INTO calendarios (nome_exibicao, cor, criado_em) VALUES (?,?,?)', [nome_exibicao, cor, criado_em]);
+        const { nome_exibicao, cor } = calendar;
+        const [result] = await db.query(
+            'INSERT INTO calendarios (nome_exibicao, cor, criado_em) VALUES (?,?,NOW())',
+            [nome_exibicao, cor]);
         return result.insertId; // Retorna o ID do calendário criado
     }
 
     // Atualiza um calendário existente
     static async update(id, calendar) {
-        const { nome_exibicao, cor, criado_em } = calendar;
-        const [result] = await db.query('UPDATE calendarios SET nome_exibicao = ?, cor = ?, criado_em = ? WHERE id_calendario = ?', [nome_exibicao, cor, criado_em, id]);
+        const { nome_exibicao, cor, atualizado_em } = calendar;
+        const [result] = await db.query('UPDATE calendarios SET nome_exibicao = ?, cor = ?, atualizado_em = ? WHERE id_calendario = ?', [nome_exibicao, cor, atualizado_em, id]);
         return result.affectedRows; // Retorna o número de linhas afetadas
     }
 
