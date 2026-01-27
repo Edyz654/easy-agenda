@@ -26,10 +26,12 @@ class CalendarModel {
 
     // Atualiza um calendário existente
     static async update(id, calendar) {
-        const { nome_exibicao, cor, atualizado_em } = calendar;
-        const [result] = await db.query('UPDATE calendarios SET nome_exibicao = ?, cor = ?, atualizado_em = ? WHERE id_calendario = ?', [nome_exibicao, cor, atualizado_em, id]);
+        const { nome_exibicao, cor } = calendar;
+        const [result] = await db.query('UPDATE calendarios SET nome_exibicao = ?, cor = ?, atualizado_em = NOW() WHERE id_calendario = ?', [nome_exibicao, cor, id]);
         return result.affectedRows; // Retorna o número de linhas afetadas
     }
+
+    // VERIFICAR A INCLUSÃO DE UM PATCH PARA ATUALIZAÇÃO PARCIAL // REMOVER UPDATE ACIMA SE FOR O CASO
 
     // Deleta um calendário pelo ID
     static async delete(id_calendario) {
