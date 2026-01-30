@@ -12,10 +12,10 @@ router.get('/', CalendarController.getAll);
 router.post('/', CalendarController.create);
 
 // Rota para atualizar um calendário existente
-router.put('/:id_calendario', CalendarController.update);
+router.put('/:id', CalendarController.update);
 
 // Rota para deletar um calendário
-router.delete('/:id_calendario', CalendarController.delete);
+router.delete('/:id', CalendarController.delete);
 
 module.exports = router;
 // Exporta o roteador para ser usado na aplicação principal

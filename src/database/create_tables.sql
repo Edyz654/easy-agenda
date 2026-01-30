@@ -26,11 +26,11 @@ CREATE TABLE `calendarios` (
   `cor` varchar(20) NOT NULL,
   `criado_em` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `atualizado_em` datetime DEFAULT NULL,
-  `fk_usuario_id_ca` int NOT NULL,
+  `usuario_id` int NOT NULL,
   PRIMARY KEY (`id_calendario`),
-  KEY `calendarios_fk4` (`fk_usuario_id_ca`),
-  CONSTRAINT `calendarios_fk4` FOREIGN KEY (`fk_usuario_id_ca`) REFERENCES `usuarios` (`id_usuario`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  KEY `fk_calendarios_usuarios` (`usuario_id`),
+  CONSTRAINT `fk_calendarios_usuarios` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id_usuario`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 
 -- `easy-agendaDB`.compromissos definition
@@ -46,10 +46,23 @@ CREATE TABLE `compromissos` (
   `criado_em` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `atualizado_em` datetime DEFAULT NULL,
   `observacoes` text,
-  `id_calendario` int NOT NULL,
+  `calendario_id` int NOT NULL,
   PRIMARY KEY (`id_compromisso`),
-  KEY `compromissos_fk_calendario` (`id_calendario`),
-  CONSTRAINT `compromissos_fk_calendario` FOREIGN KEY (`id_calendario`) REFERENCES `calendarios` (`id_calendario`) ON DELETE CASCADE ON UPDATE CASCADE
+  KEY `idx_compromissos_calendarios` (`calendario_id`),
+  CONSTRAINT `compromissos_fk_calendario` FOREIGN KEY (`calendario_id`) REFERENCES `calendarios` (`id_calendario`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_compromissos_calendarios` FOREIGN KEY (`calendario_id`) REFERENCES `calendarios` (`id_calendario`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+
+-- `easy-agendaDB`.convidados_compromisso definition
+
+CREATE TABLE `convidados_compromisso` (
+  `id_compromisso` int NOT NULL,
+  `id_usuario` int NOT NULL,
+  PRIMARY KEY (`id_compromisso`,`id_usuario`),
+  KEY `fk_convidados_compromisso_usuarios` (`id_usuario`),
+  CONSTRAINT `fk_convidados_compromisso_compromissos` FOREIGN KEY (`id_compromisso`) REFERENCES `compromissos` (`id_compromisso`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_convidados_compromisso_usuarios` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuario`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 
@@ -60,20 +73,8 @@ CREATE TABLE `notificacoes` (
   `id_compromisso` int NOT NULL,
   `texto` varchar(250) NOT NULL,
   PRIMARY KEY (`id_notificacao`),
-  KEY `notificacoes_fk1` (`id_compromisso`),
-  CONSTRAINT `notificacoes_fk1` FOREIGN KEY (`id_compromisso`) REFERENCES `compromissos` (`id_compromisso`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
-
--- `easy-agendaDB`.Convidados_Compromisso definition
-
-CREATE TABLE `Convidados_Compromisso` (
-  `id_compromisso` int NOT NULL,
-  `id_usuario` int NOT NULL,
-  PRIMARY KEY (`id_compromisso`,`id_usuario`),
-  KEY `Convidados_Compromisso_fk1` (`id_usuario`),
-  CONSTRAINT `Convidados_Compromisso_fk0` FOREIGN KEY (`id_compromisso`) REFERENCES `compromissos` (`id_compromisso`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `Convidados_Compromisso_fk1` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuario`) ON DELETE CASCADE ON UPDATE CASCADE
+  KEY `fk_notificacoes_compromissos` (`id_compromisso`),
+  CONSTRAINT `fk_notificacoes_compromissos` FOREIGN KEY (`id_compromisso`) REFERENCES `compromissos` (`id_compromisso`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 
@@ -87,6 +88,6 @@ CREATE TABLE `anexos` (
   `formato_arquivo` varchar(50) NOT NULL,
   `id_compromisso` int NOT NULL,
   PRIMARY KEY (`id_anexos`),
-  KEY `anexos_fk5` (`id_compromisso`),
-  CONSTRAINT `anexos_fk5` FOREIGN KEY (`id_compromisso`) REFERENCES `compromissos` (`id_compromisso`) ON DELETE CASCADE ON UPDATE CASCADE
+  KEY `fk_anexos_compromissos` (`id_compromisso`),
+  CONSTRAINT `fk_anexos_compromissos` FOREIGN KEY (`id_compromisso`) REFERENCES `compromissos` (`id_compromisso`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;

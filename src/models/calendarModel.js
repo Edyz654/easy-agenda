@@ -17,10 +17,10 @@ class CalendarModel {
 
     // Cria um novo calendário
     static async create(calendar) {
-        const { nome_exibicao, cor } = calendar;
+        const { nome_exibicao, cor, usuario_id } = calendar;
         const [result] = await db.query(
-            'INSERT INTO calendarios (nome_exibicao, cor, criado_em) VALUES (?,?,NOW())',
-            [nome_exibicao, cor]);
+            'INSERT INTO calendarios (nome_exibicao, cor, usuario_id, criado_em) VALUES (?,?,?,NOW())',
+            [nome_exibicao, cor, usuario_id]);
         return result.insertId; // Retorna o ID do calendário criado
     }
 

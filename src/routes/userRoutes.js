@@ -12,10 +12,10 @@ router.get('/', UserController.getAll);
 router.post('/', UserController.create);
 
 // Rota para atualizar um usuário existente
-router.put('/:id_usuario', UserController.update);
+router.put('/:id', UserController.update);
 
 // Rota para deletar um usuário
-router.delete('/:id_usuario', UserController.delete);
+router.delete('/:id', UserController.delete);
 
 module.exports = router;
 // Exporta o roteador para ser usado na aplicação principal

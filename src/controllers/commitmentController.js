@@ -11,6 +11,21 @@ class CommitmentController {
         }
     }
 
+    static async getById(req, res) {
+        try {
+            const commitment = await CommitmentService.getCommitmentById(
+                req.params.id //Pega o ID da URL
+            );
+            if (!commitment) {
+                return res.status(404).json({ error: "Compromisso não encontrado." });
+            }
+            res.json(commitment);
+        } catch (error) {
+            res.status(500).json({ error: error.message });
+        }
+    }
+
+
     static async create(req, res) {
         try {
             const commitment = await CommitmentService.createCommitment(req.body);

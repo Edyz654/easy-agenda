@@ -10,9 +10,9 @@ POST {{baseURL}}/calendars
 Content-Type: application/json 
 
 {
-    "nome_exibicao": "Calendário de Teste",
+    "nome_exibicao": "Calendário de Teste - 5",
     "cor": "FF5733",
-    "criado_em": "DEFAULT_TIMESTAMP"
+    "usuario_id": 1
 }
 
 
@@ -45,7 +45,6 @@ Accept: application/json
 res.json() 
 {
     "mensagem": "Calendário deletado com sucesso.",
-    "id" : @id_calendario
 }
 
 ### Deletar Calendário inexistente (erro esperado)

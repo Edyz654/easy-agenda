@@ -9,16 +9,16 @@ const router = express.Router();
 router.get('/', CommitmentController.getAll);
 
 // Rota para buscar um compromisso pelo ID
-router.get('/:id_compromisso', CommitmentController.getById);
+router.get('/:id', CommitmentController.getById);
 
 // Rota para criar um novo compromisso
 router.post('/', CommitmentController.create);
 
 // Rota para atualizar um compromisso existente
-router.put('/:id_compromisso', CommitmentController.update);
+router.put('/:id', CommitmentController.update);
 
 // Rota para deletar um compromisso
-router.delete('/:id_compromisso', CommitmentController.delete);
+router.delete('/:id', CommitmentController.delete);
 
 module.exports = router;
 // Exporta o roteador para ser usado na aplicação principal

@@ -1,4 +1,4 @@
-const CommitmentModel = require('../models/CommitmentModel');
+const CommitmentModel = require('../models/commitmentModel');
 
 class CommitmentService {
     // Busca todos os compromissos cadastrados

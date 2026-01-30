@@ -1,5 +1,7 @@
 @baseURL = http://localhost:3000
-@id_usuario = 2
+@id_usuario = 1
+
+### REVISAR TESTES DE USUÁRIOS
 
 ### Listar Usuários
 GET {{baseURL}}/users
@@ -54,7 +56,7 @@ Content-Type: application/json
 }
 
 ### Atualizar Usuário existente
-PUT {{baseURL}}/users/{3}
+PUT {{baseURL}}/users/{{id_usuario}}
 Content-Type: application/json
 
 {
@@ -64,8 +66,8 @@ Content-Type: application/json
 
 
 ### Deletar Usuário existente
-DELETE {{baseURL}}/users/{@id_usuario}
-
+DELETE {{baseURL}}/users/{{id_usuario}}
+Accept: application/json
 
 ### Deletar Usuário inexistente (erro esperado)
 DELETE {{baseURL}}/users/9999
