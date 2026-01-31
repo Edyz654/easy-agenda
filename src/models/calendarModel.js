@@ -9,9 +9,9 @@ class CalendarModel {
     }
 
     // Busca um calendário pelo ID
-    static async findById(id_calendario) {
-        const [rows] = await db.query('SELECT * FROM calendarios WHERE id = ?',
-            [id_calendario]);
+    static async findById(id) {
+        const [rows] = await db.query('SELECT * FROM calendarios WHERE id_calendario = ?',
+            [id]);
         return rows[0];
     }
 
@@ -34,8 +34,8 @@ class CalendarModel {
     // VERIFICAR A INCLUSÃO DE UM PATCH PARA ATUALIZAÇÃO PARCIAL // REMOVER UPDATE ACIMA SE FOR O CASO
 
     // Deleta um calendário pelo ID
-    static async delete(id_calendario) {
-        const [result] = await db.query('DELETE FROM calendarios WHERE id_calendario = ?', [id_calendario]);
+    static async delete(id) {
+        const [result] = await db.query('DELETE FROM calendarios WHERE id_calendario = ?', [id]);
         return result.affectedRows; // Retorna o número de linhas afetadas
     }
 }

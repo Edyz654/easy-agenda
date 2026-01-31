@@ -25,7 +25,7 @@ class CalendarController {
     static async update(req, res) {
         try {
             const updatedRows = await CalendarService.updateCalendar(
-                req.params.id_calendario,
+                req.params.id,
                 req.body
             );
             if (updatedRows === 0) {
@@ -40,7 +40,7 @@ class CalendarController {
     static async delete(req, res) {
         try {
             const deletedRows = await CalendarService.deleteCalendar(
-                req.params.id_calendario //Pega o ID da URL
+                req.params.id //Pega o ID da URL
             );
             if (deletedRows === 0) {
                 return res.status(404).json({ error: "Calendário não encontrado." }); // Verifica se o ID é válido

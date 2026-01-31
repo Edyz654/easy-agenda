@@ -9,7 +9,7 @@ class CommitmentModel {
 
     // Busca um compromisso pelo ID
     static async findById(id_compromisso) {
-        const [rows] = await db.query('SELECT * FROM compromissos WHERE id = ?',
+        const [rows] = await db.query('SELECT * FROM compromissos WHERE id_compromisso = ?',
             [id_compromisso]);
         return rows[0];
     }

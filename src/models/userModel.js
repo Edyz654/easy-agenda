@@ -30,9 +30,9 @@ class UserModel {
     }
 
     // Atualiza um usuário existente
-    static async update(id, user) {
+    static async update(id_usuario, user) {
         const { nome_exibicao, email, telefone, cpf, genero, login, senha, fuso_horario, criado_em } = user;
-        const [result] = await db.query('UPDATE usuarios SET nome_exibicao = ?, email = ?, telefone = ?, cpf = ?, genero = ?, login = ?, senha = ?, fuso_horario = ?, criado_em = ? WHERE id = ?', [nome_exibicao, email, telefone, cpf, genero, login, senha, fuso_horario, criado_em, id]);
+        const [result] = await db.query('UPDATE usuarios SET nome_exibicao = ?, email = ?, telefone = ?, cpf = ?, genero = ?, login = ?, senha = ?, fuso_horario = ?, criado_em = ? WHERE id_usuario = ?', [nome_exibicao, email, telefone, cpf, genero, login, senha, fuso_horario, criado_em, id_usuario]);
         return result.affectedRows; // Retorna o número de linhas afetadas
     }
 
