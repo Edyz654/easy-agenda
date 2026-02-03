@@ -16,10 +16,10 @@ class CommitmentModel {
 
     // Cria um novo compromisso
     static async create(commitment) {
-        const { titulo, cor, prioridade, status, horario_inicial, horario_final, observacoes } = commitment;
+        const { titulo, cor, prioridade, status, horario_inicial, horario_final, observacoes, calendario_id } = commitment;
         const [result] = await db.query(
-            'INSERT INTO compromissos (titulo, cor, prioridade, status, horario_inicial, horario_final, observacoes) VALUES (?,?,?,?,?,?,?)',
-            [titulo, cor, prioridade, status, horario_inicial, horario_final, observacoes]);
+            'INSERT INTO compromissos (titulo, cor, prioridade, status, horario_inicial, horario_final, criado_em, observacoes, calendario_id) VALUES (?,?,?,?,?,?,NOW(),?,?)',
+            [titulo, cor, prioridade, status, horario_inicial, horario_final, observacoes, calendario_id]);
         return result.insertId; // Retorna o ID do compromisso criado
     }
 

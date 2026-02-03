@@ -1,0 +1,44 @@
+@baseURL = http://localhost:3000
+@id_compromisso =1
+
+### Listar Compromissos
+GET {{baseURL}}/commitments
+Accept: application/json
+
+### Criar Compromisso
+POST {{baseURL}}/commitments
+Content-Type: application/json 
+
+{
+    "titulo": "Reunião de Teste",
+    "cor": "FF5733",
+    "prioridade": "media",
+    "status": 0,
+    "horario_inicial": "2026-01-10 10:00:00",
+    "horario_final": "2026-01-10 11:00:00",
+    "observacoes": "Discussão sobre o projeto X",
+    "calendario_id": 1
+}
+
+### Atualizar Compromisso existente
+PUT {{baseURL}}/commitments/{{id_compromisso}}
+Content-Type: application/json 
+
+{
+    "titulo": "Reunião de Teste Atualizada",
+    "cor": "00FF00",
+    "prioridade": "alta",
+    "status": 1,
+    "horario_inicial": "2026-01-10 12:00:00",
+    "horario_final": "2026-01-10 13:00:00",
+    "observacoes": "Discussão sobre o projeto Y"
+}
+
+### Deletar Compromisso existente
+DELETE {{baseURL}}/commitments/{{id_compromisso}}
+Accept: application/json
+
+res.json() 
+{
+    "mensagem": "Compromisso deletado com sucesso."
+}

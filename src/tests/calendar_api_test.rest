@@ -1,5 +1,5 @@
 @baseURL =  http://localhost:3000
-@id_calendario = 6
+@id_calendario = 7
 
 ### Listar Calendários
 GET {{baseURL}}/calendars

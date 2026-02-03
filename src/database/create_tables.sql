@@ -30,7 +30,7 @@ CREATE TABLE `calendarios` (
   PRIMARY KEY (`id_calendario`),
   KEY `fk_calendarios_usuarios` (`usuario_id`),
   CONSTRAINT `fk_calendarios_usuarios` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id_usuario`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 
 -- `easy-agendaDB`.compromissos definition
@@ -39,7 +39,7 @@ CREATE TABLE `compromissos` (
   `id_compromisso` int NOT NULL AUTO_INCREMENT,
   `titulo` varchar(150) NOT NULL,
   `cor` varchar(20) NOT NULL,
-  `prioridade` varchar(10) NOT NULL,
+  `prioridade` enum('baixa','media','alta') DEFAULT NULL,
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `horario_inicial` datetime NOT NULL,
   `horario_final` datetime NOT NULL,

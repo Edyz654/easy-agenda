@@ -16,7 +16,7 @@ class CommitmentService {
             horario_inicial: commitment.horario_inicial,
             horario_final: commitment.horario_final,
             observacoes: commitment.observacoes,
-            id_calendario: commitment.id_calendario
+            calendario_id: commitment.calendario_id ?? commitment.id_calendario
         });
     }
 
