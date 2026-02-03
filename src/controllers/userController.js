@@ -30,7 +30,7 @@ class UserController {
     // Método para atualizar um usuário existente
     static async update(req, res) {
         try {
-            const id_usuario = Number(req.params.id_usuario); // Pega o ID da URL
+            const id_usuario = Number(req.params.id); // Pega o ID da URL
 
             if (isNaN(id_usuario)) {
                 return res.status(400).json({ error: 'ID de usuário inválido.' }); // Verifica se o ID é um número válido
@@ -47,7 +47,7 @@ class UserController {
     // Método para deletar um usuário
     static async delete(req, res) {
         try {
-            const id_usuario = Number(req.params.id_usuario); // Pega o ID da URL e converte para número
+            const id_usuario = Number(req.params.id); // Pega o ID da URL e converte para número
 
             if (isNaN(id_usuario)) {
                 return res.status(400).json({ error: 'ID de usuário inválido.' }); // Verifica se o ID é um número válido

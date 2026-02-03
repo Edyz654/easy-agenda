@@ -40,7 +40,7 @@ class CommitmentController {
     static async update(req, res) {
         try {
             const updatedRows = await CommitmentService.updateCommitment(
-                req.params.id_compromisso,
+                req.params.id,
                 req.body
             );
             if (updatedRows === 0) {
@@ -55,7 +55,7 @@ class CommitmentController {
     static async delete(req, res) {
         try {
             const deletedRows = await CommitmentService.deleteCommitment(
-                req.params.id_compromisso //Pega o ID da URL
+                req.params.id //Pega o ID da URL
             );
             if (deletedRows === 0) {
                 return res.status(404).json({ error: "Compromisso não encontrado." }); // Verifica se o ID é válido
