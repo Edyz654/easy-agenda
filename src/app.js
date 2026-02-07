@@ -10,6 +10,8 @@ const calendarRoutes = require('./routes/calendarRoutes');
 
 const commitmentRoutes = require('./routes/commitmentRoutes');
 
+const guests_commitmentRoutes = require('./routes/guests_commitmentRoutes');
+
 const errorMiddleware = require('./middlewares/errorMiddleware');
 
 const app = express();
@@ -25,6 +27,8 @@ app.use('/users', userRoutes);
 app.use('/calendars', calendarRoutes);
 
 app.use('/commitments', commitmentRoutes);
+
+app.use('/guests_commitments', guests_commitmentRoutes);
 
 app.use(errorMiddleware);
 
