@@ -3,7 +3,7 @@ const Guests_commitmentModel = require('../models/guests_commitmentModel');
 class Guests_commitmentService {
     // Busca todos os convidados de um compromisso
     static async getAllGuestsCommitments(id_compromisso) {
-        return await Guests_commitmentModel.findAll(id_compromisso);
+        return await Guests_commitmentModel.findByCommitmentId(id_compromisso);
     }
 
     // Adiciona um convidado a um compromisso existente
@@ -11,7 +11,7 @@ class Guests_commitmentService {
         const addedRows = await Guests_commitmentModel.addGuest(id_compromisso, id_usuario)
         
         if(addedRows === 0) {
-            throw new Error('Não foi possível adicionar o convidade. Verifique se o compromisso e o usuário existem.');
+            throw new Error('Não foi possível adicionar o convidado. Verifique se o compromisso e o usuário existem.');
         }
 
         return await addedRows;

@@ -1,0 +1,53 @@
+@baseURL = http://localhost:3000
+
+@id_compromisso = 3
+@id_usuario = 1
+
+### Criar um compromisso (pré-requisito)
+POST {{baseURL}}/commitments
+Content-Type: application/json
+
+{
+    "titulo": "Reunião de Sprint",
+    "cor": "0000FF",
+    "prioridade": "media",
+    "status": 0,
+    "horario_inicial": "2026-02-15 14:00:00",
+    "horario_final": "2026-02-15 15:00:00",
+    "observacoes": "Planejamento da próxima sprint",
+    "calendario_id": 1
+}
+
+### Criar um usuário (pré-requisito)
+POST {{baseURL}}/users
+Content-Type: application/json
+
+{
+    "nome_exibicao": "João Silva Da Rosa",
+    "email": "joaosilva@example.com",
+    "telefone": "11999899999",
+    "cpf": "12345678901",
+    "genero": "M",
+    "login": "joaosilvarosa",
+    "senha": "senhaSegura123",
+    "fuso_horario": "UTC -3",
+    "criado_em": "2024-06-15 14:00:00"
+}
+
+### Adicionar um convidado existente a um compromisso
+POST {{baseURL}}/guests_commitments
+Content-Type: application/json
+
+{
+    "id_compromisso": 4,
+    "id_usuario": 2
+}
+
+### Listar Convidados de um compromisso
+GET {{baseURL}}/guests_commitments/{{id_compromisso}}
+Accept: application/json
+
+
+### Remover um convidado de um compromisso existente
+DELETE {{baseURL}}/guests_commitments/{{id_compromisso}}/{{id_usuario}}
+Accept: application/json

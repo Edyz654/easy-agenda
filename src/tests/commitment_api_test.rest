@@ -1,5 +1,5 @@
 @baseURL = http://localhost:3000
-@id_compromisso =1
+@id_compromisso = 3
 
 ### Listar Compromissos
 GET {{baseURL}}/commitments
@@ -10,13 +10,13 @@ POST {{baseURL}}/commitments
 Content-Type: application/json 
 
 {
-    "titulo": "Reunião de Teste",
+    "titulo": "Reunião de Teste 2",
     "cor": "FF5733",
-    "prioridade": "media",
-    "status": 0,
-    "horario_inicial": "2026-01-10 10:00:00",
-    "horario_final": "2026-01-10 11:00:00",
-    "observacoes": "Discussão sobre o projeto X",
+    "prioridade": "baixa",
+    "status": 1,
+    "horario_inicial": "2026-01-10 12:00:00",
+    "horario_final": "2026-01-10 13:00:00",
+    "observacoes": "Discussão sobre banco de dados",
     "calendario_id": 1
 }
 

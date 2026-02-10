@@ -5,14 +5,14 @@ const Guests_commitmentController = require('../controllers/guests_commitmentCon
 
 const router = express.Router();
 
-// Rota para listar todos os convidados/compromissos
-router.get('/', Guests_commitmentController.getAll);
+// Rota para listar todos os convidados de um compromisso
+router.get('/:id_compromisso', Guests_commitmentController.getAll);
 
-// Rota para criar um novo convidado/compromisso
-router.post('/', Guests_commitmentController.create);
+// Rota para adicionar um convidado existente a um compromisso
+router.post('/', Guests_commitmentController.addGuest);
 
-// Rota para deletar um convidado/compromisso
-router.delete('/:id', Guests_commitmentController.delete);
+// Rota para remover um convidado de um compromisso
+router.delete('/:id_compromisso/:id_usuario', Guests_commitmentController.removeGuest);
 
 module.exports = router;
 // Exporta o roteador para ser usado na aplicação principal

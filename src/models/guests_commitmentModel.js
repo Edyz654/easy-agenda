@@ -4,7 +4,7 @@ class Guests_CommitmentModel {
     // Lista todos os convidados de um compromisso
     static async findByCommitmentId(id_compromisso) {
         const [rows] = await db.query(
-            'SELECT * FROM condidados_compromisso WHERE id_compromisso = ?',
+            'SELECT gc.id_usuario, u.nome_exibicao FROM convidados_compromisso gc JOIN usuarios u ON gc.id_usuario = u.id_usuario WHERE gc.id_compromisso = ?',
             [id_compromisso]
         );
         return rows;
