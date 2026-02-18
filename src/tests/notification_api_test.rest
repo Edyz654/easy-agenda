@@ -1,0 +1,45 @@
+@baseURL = http://localhost:3000
+
+@id_notificacao = 4
+
+### Listar Notificações
+GET {{baseURL}}/notifications
+Accept: application/json
+
+### Criar Notificação
+POST {{baseURL}}/notifications
+Content-Type: application/json 
+
+{
+    "id_compromisso": 3,
+    "texto": "Lembrete de reunião"
+}
+
+### Atualizar Notificação existente
+PUT {{baseURL}}/notifications/{{id_notificacao}}
+Content-Type: application/json 
+
+{
+    "id_compromisso": 3,
+    "texto": "Lembrete de reunião atualizado"
+}
+
+### Atualizar Notificação inexistente (erro esperado)
+PUT {{baseURL}}/notifications/9999
+Content-Type: application/json  
+
+{
+    "id_compromisso": 1,
+    "texto": "Notificação Inexistente"
+}
+
+### Deletar Notificação existente
+DELETE {{baseURL}}/notifications/{{id_notificacao}}
+Accept: application/json
+
+res.json() 
+{
+    "mensagem": "Notificação deletada com sucesso.",
+}
+
+
