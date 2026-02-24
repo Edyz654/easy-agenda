@@ -14,6 +14,8 @@ const guests_commitmentRoutes = require('./routes/guests_commitmentRoutes');
 
 const notificationRoutes = require('./routes/notificationRoutes');
 
+const attachmentRoutes = require('./routes/attachmentRoutes');
+
 const errorMiddleware = require('./middlewares/errorMiddleware');
 
 const app = express();
@@ -33,6 +35,8 @@ app.use('/commitments', commitmentRoutes);
 app.use('/guests_commitments', guests_commitmentRoutes);
 
 app.use('/notifications', notificationRoutes);
+
+app.use('/attachments', attachmentRoutes);
 
 app.use(errorMiddleware);
 
