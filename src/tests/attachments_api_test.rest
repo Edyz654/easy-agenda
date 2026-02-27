@@ -1,0 +1,61 @@
+@baseURL = http://localhost:3000
+@id_anexo = 1
+
+### Listar anexos
+GET {{baseURL}}/attachments
+Accept: application/json
+
+### Criar anexo válido (PDF)
+POST {{baseURL}}/attachments
+Content-Type: multipart/form-data; boundary=TesteUpload
+
+--TesteUpload
+Content-Disposition: form-data; name="id_compromisso"
+
+1
+--TesteUpload
+Content-Disposition: form-data; name="file"; filename="sample.pdf"
+Content-Type: application/pdf
+
+< ./fixtures/sample.pdf
+--TesteUpload--
+
+### Criar anexo sem arquivo (erro esperado)
+POST {{baseURL}}/attachments
+Content-Type: application/json
+
+{
+  "id_compromisso": 1
+}
+
+### Criar anexo com tipo inválido (erro esperado)
+POST {{baseURL}}/attachments
+Content-Type: multipart/form-data; boundary=TesteUpload
+
+--TesteUpload
+Content-Disposition: form-data; name="id_compromisso"
+
+1
+--TesteUpload
+Content-Disposition: form-data; name="file"; filename="sample.txt"
+Content-Type: text/plain
+
+< ./fixtures/sample.txt
+--TesteUpload--
+
+### Atualizar anexo existente
+PUT {{baseURL}}/attachments/{{id_anexo}}
+Content-Type: application/json
+
+{
+  "nome_original": "arquivo-atualizado.pdf",
+  "nome_arquivo": "arquivo-atualizado.pdf",
+  "mime_type": "application/pdf",
+  "tamanho_bytes": 2000,
+  "caminho": "uploads/attachments/arquivo-atualizado.pdf",
+  "id_compromisso": 1
+}
+
+### Deletar anexo existente
+DELETE {{baseURL}}/attachments/{{id_anexo}}
+Accept: application/json

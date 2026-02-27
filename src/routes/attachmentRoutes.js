@@ -1,6 +1,8 @@
 const express = require('express');
 
 const AttachmentController = require('../controllers/attachmentController');
+
+const upload = require('../middlewares/uploadMiddleware');
 // Importa o controller que gerencia as requisições relacionadas a anexos
 
 const router = express.Router();
@@ -9,7 +11,7 @@ const router = express.Router();
 router.get('/', AttachmentController.getAll);
 
 // Rota para criar um novo anexo
-router.post('/', AttachmentController.create);
+router.post('/', upload.single('file'), AttachmentController.create);
 
 // Rota para atualizar um anexo existente
 router.put('/:id', AttachmentController.update);

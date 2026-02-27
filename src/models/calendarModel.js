@@ -20,7 +20,7 @@ class CalendarModel {
     static async create(calendar) {
         const { nome_exibicao, cor, usuario_id } = calendar;
         const [result] = await db.query(
-            'INSERT INTO calendarios (nome_exibicao, cor, usuario_id, criado_em) VALUES (?,?,?,NOW())',
+            'INSERT INTO calendarios (nome_exibicao, cor, usuario_id) VALUES (?,?,?)',
             [nome_exibicao, cor, usuario_id]
         );
         return result.insertId; // Retorna o ID do calendário criado
@@ -29,13 +29,11 @@ class CalendarModel {
     // Atualiza um calendário existente
     static async update(id, calendar) {
         const { nome_exibicao, cor } = calendar;
-        const [result] = await db.query('UPDATE calendarios SET nome_exibicao = ?, cor = ?, atualizado_em = NOW() WHERE id_calendario = ?',
+        const [result] = await db.query('UPDATE calendarios SET nome_exibicao = ?, cor = ? WHERE id_calendario = ?',
             [nome_exibicao, cor, id]
         );
         return result.affectedRows; // Retorna o número de linhas afetadas
     }
-
-    // VERIFICAR A INCLUSÃO DE UM PATCH PARA ATUALIZAÇÃO PARCIAL // REMOVER UPDATE ACIMA SE FOR O CASO
 
     // Deleta um calendário pelo ID
     static async delete(id) {

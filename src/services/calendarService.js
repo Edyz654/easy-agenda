@@ -12,7 +12,6 @@ class CalendarService {
         return await CalendarModel.create({
             nome_exibicao: calendar.nome_exibicao,
             cor: calendar.cor,
-            criado_em: calendar.criado_em,
             usuario_id: calendar.usuario_id
         }); // Cria o novo calendário
     }

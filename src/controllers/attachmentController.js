@@ -13,9 +13,25 @@ class AttachmentController {
 
     static async create(req, res) {
         try {
-            const attachment = await AttachmentService.createAttachment(req.body);
+            if (!req.file) {
+                return res.status(400).json({ error: 'Arquivo é obrigatório no campo "file".' });
+            }
 
-            res.status(201).json(attachment);
+            const payload = {
+                nome_original: req.file.originalname,
+                nome_arquivo: req.file.filename,
+                mime_type: req.file.mimetype,
+                tamanho_bytes: req.file.size,
+                caminho: `uploads/attachments/${req.file.filename}`,
+                id_compromisso: req.body.id_compromisso
+            };
+
+            const attachmentId = await AttachmentService.createAttachment(payload);
+
+            res.status(201).json({
+                id_anexos: attachmentId,
+                ...payload
+            });
 
         } catch (error) {
             res.status(400).json({ error: error.message });

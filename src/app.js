@@ -1,4 +1,5 @@
 const express = require('express');
+const path = require('path');
 
 const cors = require('cors');
 
@@ -25,6 +26,7 @@ app.use(cors());
 app.use(helmet());
 
 app.use(express.json());
+app.use('/uploads', express.static(path.resolve(__dirname, '../uploads')));
 
 app.use('/users', userRoutes);
 
@@ -42,4 +44,3 @@ app.use(errorMiddleware);
 
 
 module.exports = app;
-

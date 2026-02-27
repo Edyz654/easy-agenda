@@ -18,7 +18,7 @@ class CommitmentModel {
     static async create(commitment) {
         const { titulo, cor, prioridade, status, horario_inicial, horario_final, observacoes, calendario_id } = commitment;
         const [result] = await db.query(
-            'INSERT INTO compromissos (titulo, cor, prioridade, status, horario_inicial, horario_final, criado_em, observacoes, calendario_id) VALUES (?,?,?,?,?,?,NOW(),?,?)',
+            'INSERT INTO compromissos (titulo, cor, prioridade, status, horario_inicial, horario_final, observacoes, calendario_id) VALUES (?,?,?,?,?,?,?,?)',
             [titulo, cor, prioridade, status, horario_inicial, horario_final, observacoes, calendario_id]);
         return result.insertId; // Retorna o ID do compromisso criado
     }
@@ -26,7 +26,7 @@ class CommitmentModel {
     // Atualiza um compromisso existente
     static async update(id, commitment) {
         const { titulo, cor, prioridade, status, horario_inicial, horario_final, observacoes } = commitment;
-        const [result] = await db.query('UPDATE compromissos SET titulo = ?, cor = ?, prioridade = ?, status = ?, horario_inicial = ?, horario_final = ?, atualizado_em = NOW(), observacoes = ? WHERE id_compromisso = ?', [titulo, cor, prioridade, status, horario_inicial, horario_final, observacoes, id]);
+        const [result] = await db.query('UPDATE compromissos SET titulo = ?, cor = ?, prioridade = ?, status = ?, horario_inicial = ?, horario_final = ?, observacoes = ? WHERE id_compromisso = ?', [titulo, cor, prioridade, status, horario_inicial, horario_final, observacoes, id]);
         return result.affectedRows; // Retorna o número de linhas afetadas
     }
 
