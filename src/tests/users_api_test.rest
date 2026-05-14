@@ -1,7 +1,6 @@
 @baseURL = http://localhost:3000
 @id_usuario = 3
 
-### REVISAR TESTES DE USUÁRIOS
 
 ### Listar Usuários
 GET {{baseURL}}/users
@@ -12,12 +11,12 @@ POST {{baseURL}}/users
 Content-Type: application/json
 
 {
-    "nome_exibicao": "Teste",
-    "email": "teste@example.com",
+    "nome_exibicao": "Pedro",
+    "email": "pedro@example.com",
     "telefone": "11999999999",
     "cpf": "12345678901",
     "genero": "M",
-    "login": "teste.user",
+    "login": "pedro.user",
     "senha": "123456",
     "fuso_horario": "UTC -3",
     "criado_em": "2024-06-01 12:00:00"
@@ -47,12 +46,12 @@ Content-Type: application/json
     "nome_exibicao": "Teste3",
     "email": "teste@example.com",  
     "telefone": "11999999999",
-    "cpf": "12345678901",
+    "cpf": "12345678904",
     "genero": "M",
     "login": "teste.user2",
     "senha": "123456",
     "fuso_horario": "UTC -3",
-    "criado_em": "2024-06-01T12:00:00Z"
+    "criado_em": "2024-06-01 12:00:00"
 }
 
 ### Atualizar Usuário existente

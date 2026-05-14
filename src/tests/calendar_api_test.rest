@@ -1,5 +1,5 @@
 @baseURL =  http://localhost:3000
-@id_calendario = 7
+@id_calendario = 2
 
 ### Listar Calendários
 GET {{baseURL}}/calendars
@@ -10,13 +10,10 @@ POST {{baseURL}}/calendars
 Content-Type: application/json 
 
 {
-    "nome_exibicao": "Calendário de Teste - 5",
-    "cor": "FF5733",
+    "nome_exibicao": "Calendário de Teste - 123",
+    "cor": "FF5734",
     "usuario_id": 1
 }
-
-
-//Testar possibilidades de erro na criação de calendário
 
 ### Atualizar Calendário existente
 PUT {{baseURL}}/calendars/{{id_calendario}}
@@ -25,7 +22,7 @@ Content-Type: application/json
 {
     "nome_exibicao": "Calendário de Teste Atualizado 3210",
     "cor": "00FF00",
-    "criado_em": "2024-06-01T12:00:00Z"
+    "criado_em": "2024-06-01 13:50:00"
 }
 
 ### Atualizar Calendário inexistente (erro esperado)
@@ -35,7 +32,7 @@ Content-Type: application/json
 {
     "nome_exibicao": "Calendário Inexistente",
     "cor": "0000FF",
-    "criado_em": "2024-06-01T12:00:00Z"
+    "criado_em": "2024-06-01 12:00:00"
 }
 
 ### Deletar Calendário existente
@@ -55,3 +52,4 @@ res.json()
 {
     "erro": "Calendário não encontrado."
 }
+
